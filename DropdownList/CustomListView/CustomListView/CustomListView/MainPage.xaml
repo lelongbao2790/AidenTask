@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CustomListView"
+             xmlns:customview="clr-namespace:CustomListView.View.CustomViewCell"
+             x:Class="CustomListView.MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <customview:PresetDataTemplateSelector x:Key="PresetDataTemplateSelector"/>
+            <customview:GroupHeaderTemplate x:Key="GroupHeaderTemplate"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout BackgroundColor="#dedede">
+        <StackLayout Orientation="Horizontal"
+                     BackgroundColor="#676767"
+                     HeightRequest="50"
+                     VerticalOptions="Center">
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer
+                    Command="{Binding .DisplayMenuCommand}"/>
+            </StackLayout.GestureRecognizers>
+            <Image x:Name="DownArrow"
+                   Margin="10"
+                   Aspect="AspectFit"/>
+            <Image x:Name="DownLine"
+                   Margin="5"
+                   Aspect="AspectFit"/>
+            <Label Text="{Binding .SelectedPresetName}"
+                   FontSize="Medium"
+                   VerticalTextAlignment="Center"
+                   Margin="10"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="Center"
+                   TextColor="White"
+                   FontAttributes="Bold"/>
+        </StackLayout>
+        <ListView x:Name="NativeListView"
+                  ItemsSource="{Binding .GamePresetGroups, Mode=TwoWay}"
+                  ItemTemplate="{StaticResource PresetDataTemplateSelector}"
+                  IsGroupingEnabled="True"
+                  HasUnevenRows="True"
+                  IsVisible="{Binding .MenuIsVisible, Mode=TwoWay}"
+                  SelectionMode="Single"
+                  SelectedItem="{Binding .SelectedPreset}">
+            <ListView.Header>
+                <StackLayout Margin="10,0">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer
+                                Command="{Binding .CreateNewCustomGamePreset}"/>
+                    </StackLayout.GestureRecognizers>
+                    <Label Text="Create Game Preset"
+                            BackgroundColor="Transparent"
+                            FontSize="Medium">
+                    </Label>
+                </StackLayout>
+            </ListView.Header>
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <customview:GroupHeaderTemplate/>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

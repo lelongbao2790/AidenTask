@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Add To Preset",
+    "command": "AddToPreset"
+  },
+  {
+    "name": "Rename Preset",
+    "command": "Rename Preset"
+  },
+  {
+    "name": "Delete Preset",
+    "command": "DeletePreset"
+  },
+  {
+    "name": "Import Preset",
+    "command": "ImportPreset"
+  },
+  {
+    "name": "ExportPreset",
+    "command": "ExportPreset"
+  }
+]

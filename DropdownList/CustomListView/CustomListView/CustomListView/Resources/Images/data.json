@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Signature Sound",
+    "band": [ 0, 0, 0, 0, 0 ],
+    "type": 1
+  },
+  {
+    "name": "Bass Boost",
+    "band": [ 0, 0, 0, 0, 0 ],
+    "type": 1
+  },
+  {
+    "name": "Bass And Treble Boost",
+    "band": [ 0, 0, 0, 0, 0 ],
+    "type": 1
+  },
+  {
+    "name": "Vocal Boost",
+    "band": [ 0, 0, 0, 0, 0 ],
+    "type": 1
+  },
+  {
+    "name": "Junk 1",
+    "band": [ 0, 0, 0, 0, 0 ],
+    "type": 2
+  },
+  {
+    "name": "Junk 2",
+    "band": [ 0, 0, 0, 0, 0 ],
+    "type": 2
+  },
+  {
+    "name": "Junk 3",
+    "band": [ 0, 0, 0, 0, 0 ],
+    "type": 2
+  }
+
+]

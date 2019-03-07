@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          x:Class="CustomListView.View.CustomViewCell.CustomPresetViewCell">
+    <ViewCell.ContextActions>
+        <MenuItem Text="" Command=""></MenuItem>
+    </ViewCell.ContextActions>
+    <Grid Margin="10,0">
+        <Label Text="{Binding Name}"
+               VerticalOptions="CenterAndExpand"
+               VerticalTextAlignment="Center"
+               FontSize="Medium"
+               IsVisible="{Binding .IsNotEditting, Mode=TwoWay}"/>
+        <Entry Text="{Binding Name}"
+               IsVisible="{Binding .IsEditting, Mode=TwoWay}"
+               MaxLength="25"
+               FontSize="Medium"
+               Completed="Entry_Completed"/>
+    </Grid>
+</ViewCell>

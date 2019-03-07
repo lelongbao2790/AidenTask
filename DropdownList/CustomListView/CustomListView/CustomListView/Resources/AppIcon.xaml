@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CustomListView.Resources.AppIcon">
+    <x:String x:Key="Data">data.json</x:String>
+    <x:String x:Key="RightContextMenu">right-context.json</x:String>
+    <x:String x:Key="DownArrow">arrow_down.png</x:String>
+    <x:String x:Key="DownLine">arrow_line.png</x:String>
+</ResourceDictionary>
