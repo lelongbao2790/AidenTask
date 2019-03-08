@@ -30,9 +30,6 @@ namespace CustomListView.View.CustomViewCell
                 return;
             }
             entry.IsVisible = false;
-            App.GamePresetViewModel.IsEnableCreateButton = true;
-            App.GamePresetViewModel.MenuIsVisible = true;
-            Application.Current.MainPage.BindingContext = App.GamePresetViewModel;
         }
         private void OnBindingContextChanged(object sender, EventArgs e)
         {
@@ -40,8 +37,6 @@ namespace CustomListView.View.CustomViewCell
 
             if (BindingContext == null)
                 return;
-
-            GamePreset preset = (GamePreset)this.BindingContext;
         }
     }
 }

@@ -20,9 +20,10 @@ namespace CustomListView.ViewModel
         public GamePresetViewModel()
         {
             gamePresetGroups = new ObservableCollection<GamePresetGroup>();
+            this.customGamePreset.CollectionChanged += ChildCollectionChanged;
+            this.customGamePreset.ValueChanged += ChildViewModelChanged;
             LoadData();
             SelectedPresetName = defaultGamePreset.FirstOrDefault()?.Name;
-            countOfCustomPreset = customGamePreset.Count;
             IsEnableCreateButton = true;
             CreateNewCustomGamePreset = new Command(NewCustomGamePreset);
             DisplayMenuCommand = new Command(ChangStateMenuVisible);
@@ -40,13 +41,6 @@ namespace CustomListView.ViewModel
             {
                 if (isEnableCreateButton != value)
                 {
-                    if (value)
-                    {
-                        if (countOfCustomPreset > 3)
-                        {
-                            value = !value;
-                        }
-                    }
                     isEnableCreateButton = value;
                     OnPropertyChanged();
                 }
@@ -100,26 +94,6 @@ namespace CustomListView.ViewModel
                 }
             }
         }
-        int countOfCustomPreset;
-        public int CountOfCustomPreset
-        {
-            get
-            {
-                return countOfCustomPreset;
-            }
-            set
-            {
-                if (countOfCustomPreset != value)
-                {
-                    countOfCustomPreset = value;
-                    if (CountOfCustomPreset >= 4)
-                    {
-                        isEnableCreateButton = false;
-                    }
-                    OnPropertyChanged();
-                }
-            }
-        }
         private void HandleSelectedPreset()
         {
             SelectedPresetName = selectedPreset.Name;
@@ -158,12 +132,10 @@ namespace CustomListView.ViewModel
             {
                 return;
             }
-            IsEnableCreateButton = false;
             customGamePreset.Insert(0, new GamePreset()
             {
                 IsEditting = true
             });
-            CountOfCustomPreset = customGamePreset.Count;
             OnPropertyChanged("GamePresetGroups");
         }
 
@@ -205,7 +177,31 @@ namespace CustomListView.ViewModel
                 gamePresetGroups.Add(defaultGamePreset);
                 gamePresetGroups.Add(customGamePreset);
             }
+        }
 
+        private void ChildViewModelChanged(object sender, EventArgs e)
+        {
+            if (!(sender as GamePreset).IsEditting && customGamePreset.Count < 4)
+            {
+                this.IsEnableCreateButton = true;
+
+            }
+        }
+
+        private void ChildCollectionChanged(object sender, EventArgs e)
+        {
+            var gamePresets = sender as ObservableCollection<GamePreset>;
+            if (gamePresets.Count >= 4)
+            {
+                this.IsEnableCreateButton = false;
+                return;
+            }
+            if (gamePresets.Any(x => x.IsEditting))
+            {
+                this.IsEnableCreateButton = false;
+                return;
+            }
+            this.IsEnableCreateButton = true;
         }
     }
 }
